@@ -5,10 +5,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+
 import javafx.scene.paint.Color;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Display;
@@ -19,14 +20,19 @@ import org.eclipse.swt.widgets.Shell;
 public class Main {
 
 	public static void main(String[] args) {
+		new Main().launch(args);
+	}
 
-		final Display display = new Display();
-		final Shell shell = new Shell(display);
-		final RowLayout layout = new RowLayout();
+	final Display display = new Display();
+	final Shell shell = new Shell(display);
+	final RowLayout layout = new RowLayout();
+
+	private void launch(String[] args) {
+
 		shell.setLayout(layout);
 
 		/* Create the SWT button */
-		final org.eclipse.swt.widgets.Button swtButton = new org.eclipse.swt.widgets.Button(shell, SWT.PUSH);
+		final Button swtButton = new Button(shell, SWT.PUSH);
 		swtButton.setText("SWT Button");
 
 		/* Create an FXCanvas */
@@ -40,28 +46,23 @@ public class Main {
 			}
 		};
 
-		/* Create a JavaFX Group node */
-		Group group = new Group();
-
 		/* Create a JavaFX button */
-		final Button jfxButton = new Button("JFX Button");
+		final javafx.scene.control.Button jfxButton = new javafx.scene.control.Button("JFX Button");
 
 		/* Assign the CSS ID ipad-dark-grey */
 		jfxButton.setId("ipad-dark-grey");
+
+		/* Create a JavaFX Group node */
+		Group group = new Group();
 
 		/* Add the button as a child of the Group node */
 		group.getChildren().add(jfxButton);
 
 		/* Create the Scene instance and set the group node as root */
-		Color color = Color.rgb( //
-				shell.getBackground().getRed(), //
-				shell.getBackground().getGreen(), //
-				shell.getBackground().getBlue() //
-		);
-		Scene scene = new Scene(group, color);
+		Scene scene = new Scene(group, convert(shell.getBackground()));
 
 		/* Attach an external stylesheet */
-		scene.getStylesheets().add("twobuttons/Buttons.css");
+		scene.getStylesheets().add("Buttons.css");
 
 		fxCanvas.setScene(scene);
 
@@ -91,6 +92,10 @@ public class Main {
 
 		display.dispose();
 
+	}
+
+	private javafx.scene.paint.Color convert(org.eclipse.swt.graphics.Color c) {
+		return Color.rgb(c.getRed(), c.getGreen(), c.getBlue());
 	}
 
 	public int add(int a, int b) {
