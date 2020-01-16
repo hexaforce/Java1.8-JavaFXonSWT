@@ -18,12 +18,12 @@
 		<dependency>
 			<groupId>javafx.embed</groupId>
 			<artifactId>swt</artifactId>
-			<version>1.8.0_231</version>
+			<version>1.8.0_241</version>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.swt</groupId>
 			<artifactId>org.eclipse.swt.cocoa.macosx.x86_64</artifactId>
-			<version>4.3</version>
+			<version>4.14</version>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
